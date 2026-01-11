@@ -1,5 +1,5 @@
 import React from 'react'
-import { href, Link, useParams } from 'react-router-dom'
+import { href, Link, useNavigate, useParams } from 'react-router-dom'
 import { products } from '../Context/Context'
 import { useContext } from 'react'
 import { useState } from 'react'
@@ -8,6 +8,7 @@ const Product_details = () => {
     const {pro_list} =useContext(products)
     const [fproducts,setfproducts]=useState([])
     const {category}=useParams()
+    const navigate=useNavigate()
    console.log(category)
    useEffect(()=>{
         if(!pro_list && pro_list.length===0)return 
@@ -20,7 +21,7 @@ const Product_details = () => {
 
    },[category,pro_list])
    const sendcategory=(category,id)=>{
-        window.location.href=`/readmore/${category}/${id}`
+        navigate(`/readmore/${category}/${id}`)
    }
   return (
     <div className='w-full min-h-[200px]'>
